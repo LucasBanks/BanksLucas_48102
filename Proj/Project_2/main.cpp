@@ -8,8 +8,8 @@
 using namespace std;
 
 //Function prototypes  
-string setBoard(string user, string &choices); 
-string checkInput(int, bool&);
+string setBoard(string user, string&); 
+string checkInput(int, bool&, string&);
 void printInstructions();
  
 //execution begins here
@@ -46,8 +46,7 @@ int main()
         //leave
         quit=false;
         
-        //resets score
-        score=100;
+        
         
         //Prompts user to select difficulty or leave program.
         cout<<"Welcome to MASTERMIND!"<<endl;
@@ -62,19 +61,24 @@ int main()
         getline(cin,dif);
    
         //Passes in strings of a length relevant to the difficulty selected.
+        //Also sets score based on difficulty.
         switch (dif[0])
         {
             case '1': {spot=setBoard(begnner, choices);
             numOf=4;
+            score=100;
             break;}
             case '2': {spot=setBoard(easy, choices);
             numOf=6;
+            score=300;
             break;}
             case '3': {spot=setBoard(interm, choices);
             numOf=7;
+            score=375;
             break;}
             case '4': {spot=setBoard(hard, choices);
             numOf=8;
+            score=480;
             break;} 
             case '9': {printInstructions(); //calls function to print instrcutions
             goto RESTART; //goes to beginning of menu loop
@@ -89,7 +93,7 @@ int main()
         //this if will skip the whole block that checks the user's input for the
         //right letters if user decides to quit. 
         if (again!="n"){
-        guess=checkInput(numOf, quit);
+        guess=checkInput(numOf, quit, spot);
         if(quit==true)
         {
             break;
@@ -294,7 +298,7 @@ string setBoard(string user, string &choices){
                  //on the board.
 }
  
-string checkInput(int num, bool &quit)
+string checkInput(int num, bool &quit, string &spot)
 {
     bool check; //variable to check if input is valid
     string guess, //user's guess
@@ -304,10 +308,10 @@ string checkInput(int num, bool &quit)
     //when it comes to checking if the user input is valid
     switch(num)
     {
-        case 4: {vldList="QWASqwas1"; break;}
-        case 6: {vldList="QWASEDqwased1"; break;}
-        case 7: {vldList="QWASEDRqwasedr1"; break;}
-        case 8: {vldList="QWASEDRFqwasedrf1"; break;}
+        case 4: {vldList="QWASqwas1+"; break;}
+        case 6: {vldList="QWASEDqwased1+"; break;}
+        case 7: {vldList="QWASEDRqwasedr1+"; break;}
+        case 8: {vldList="QWASEDRFqwasedrf1+"; break;}
     }
    
      do{
@@ -322,6 +326,10 @@ string checkInput(int num, bool &quit)
             if(guess=="1")
             {
                 quit=true;
+            }
+            else if(guess=="+")
+            {
+                cout<<"THE ANSWER IS: "<<spot<<endl;
             }
            
              //Checks for valid input
@@ -369,7 +377,7 @@ string checkInput(int num, bool &quit)
             //will run giving the player an invalid input message
             if(check==false)
             {
-                cout<<"Invalid input. Please type in the four valid letters only. NO REPEATS"<<endl;
+                cout<<"Invalid input. Please type in four valid letters only. NO REPEATS"<<endl;
             } 
   
            
