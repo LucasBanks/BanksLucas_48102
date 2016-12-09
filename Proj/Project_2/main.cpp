@@ -11,6 +11,7 @@ using namespace std;
 string setBoard(string user, string&); 
 string checkInput(int, bool&, string&);
 void printInstructions();
+void saveScore(float, string);
  
 //execution begins here
 int main()
@@ -28,7 +29,8 @@ int main()
            choices, //Where list of valid choices will be stored for the difficulty
            accuraO = (4,""), //where Os and os will be sorted
            accura=(4,""), //Where Os and os will be stored
-           dif; //variable where user input to determine difficulty will be stored
+           dif, //variable where user input to determine difficulty will be stored
+           name; //User will enter their name to save their score.
     bool win, //Keeps game in a loop until character wins.
          quit; //keeps menu in loop until user chooses to quit
     int numOf, //number of valid choices
@@ -149,6 +151,14 @@ int main()
                 //Outputs final score
                 cout<<"Your final score is "<<setprecision(4)<<score<<"!"<<endl;
                 cout<<endl;
+                
+                //Prompts user to type in the name that will be associated with 
+                //the score.
+                getline(cin,name);
+                
+                //Calls saveScore function to save score.
+                saveScore(score, name);
+                        
                 //Sets win = true so that game loop will break
                 win=true;
                 cout<<"Would you like to play again on a new board? Enter 'y' for yes, ";
@@ -409,4 +419,11 @@ void printInstructions(){
     getline(cin,cont);    
     
     return;   
+}
+
+void saveScore(float score, string name){
+    fstream file;
+    file.open("scores.txt");
+    file<<score<<endl;
+    file.close();    
 }
