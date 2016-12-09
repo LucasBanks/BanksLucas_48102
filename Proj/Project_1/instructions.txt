@@ -1,0 +1,18 @@
+-- HOW TO PLAY MASTERMIND --
+
+There are four board spaces. Each space has a secret 
+letter assigned to it. The player is to figure out the
+order in which those letters are assigned to the spaces
+on the board. The player is only limited to guessing
+four DIFFERENT letters at a time. 
+
+On Easy, Intermediate, and Hard mode, the game will tell 
+you when you picked  a letter that exists on the board 
+with a lowercase 'o'. If you picked a letter that exists on the
+board AND got the exact spot correct, the game will tell
+you with a capital 'O'. However, it will not tell you what 
+order. 
+
+BEGINNER moder is reccomended for players new to the game.
+In that mode, there are only 4 possible letters, and it
+will tell you the exact spots that you got right. 
