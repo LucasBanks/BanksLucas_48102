@@ -7,13 +7,6 @@
  
 using namespace std;
 
-//passes in the appropriate values to set the board for the difficulty 
-//selected by the user. 
-const string begnner(4, '.'), 
-             easy(6, '.'),
-             interm(7, '.'),
-             hard(8, '.');
- 
 //Function prototypes  
 string setBoard(string user, string &choices); 
 string checkInput(int, bool&);
@@ -22,6 +15,12 @@ void printInstructions();
 //execution begins here
 int main()
 {
+//passes in the appropriate values to set the board for the difficulty 
+//selected by the user. 
+  string begnner(4, '.'), 
+         easy(6, '.'),
+         interm(7, '.'),
+         hard(8, '.');
     string guess, //the player's guess will be stored
            spot(4,'.'), //where letters will be randomly assigned
            chkSpot, //checks how accurate the player's guess is
