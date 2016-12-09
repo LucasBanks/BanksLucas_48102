@@ -92,6 +92,7 @@ int main()
     do{
         //this if will skip the whole block that checks the user's input for the
         //right letters if user decides to quit. 
+        
         if (again!="n"){
         guess=checkInput(numOf, quit, spot);
         if(quit==true)
@@ -146,7 +147,7 @@ int main()
                 cout<<"== [OOOO]"<<endl;
                 cout<<endl;
                 //Outputs final score
-                cout<<"Your final score is "<<setprecision(2)<<score<<"!"<<endl;
+                cout<<"Your final score is "<<setprecision(4)<<score<<"!"<<endl;
                 cout<<endl;
                 //Sets win = true so that game loop will break
                 win=true;
@@ -170,7 +171,7 @@ int main()
                 cout<<"   -- CHOICES: "<<choices<<" -- Enter '1' to return to the menu."<<endl;
             }
         //resets score, oCount, oOcount, accura & accuraO
-        score/=1.2;
+        score-=score*0.07;
         oCount=0;
         oOCount=0;
         accuraO = (4, "");
