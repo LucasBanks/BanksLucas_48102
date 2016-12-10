@@ -87,7 +87,7 @@ int main()
             numOf=8;
             score=480;
             break;} 
-            case '5': {void printScore();
+            case '5': {printScore();
             goto RESTART;
             break;}
             case '9': {printInstructions(); //calls function to print instrcutions
@@ -451,22 +451,19 @@ void printScore(){
     scores.open("scores.txt");
     names.open("names.txt");
     
-    for(int i; i<=10; i++)
+    for(int i=0; i<=10; i++)
     {
         scores>>hiScore[i][0];
         names>>hiScore[i][1];
     }
-    
+
     scores.close();
     names.close();
    
-    for(int i; i<=10; i++)
+    for(int i=0; i<=10; i++)
     {
         cout<<hiScore[i][1]<<"                ";
         cout<<hiScore[i][0]<<endl;
-    }
-    
-    cout<<"TESTING "<<hiScore[1][1]<<endl;
-    
+    } 
     return;
 }
