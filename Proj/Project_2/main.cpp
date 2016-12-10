@@ -12,7 +12,12 @@ string setBoard(string user, string&);
 string checkInput(int, bool&, string&);
 void printInstructions();
 void saveScore(float, string);
- 
+void printScore();
+
+//Global Constants - Array Size Initialization 
+const int ROW=10,
+          COL=2;
+
 //execution begins here
 int main()
 {
@@ -37,6 +42,7 @@ int main()
         oCount=0, //where number of os will be stored        
         oOCount=0; //where number of Os will be stored  
     float score; //where score will be kept
+    ifstream file; //Where high-score data will be read from. 
     
     RESTART: //will take back to beginning of menu loop
     do{
@@ -55,6 +61,7 @@ int main()
         cout<<"2 = Easy"<<endl;
         cout<<"3 = Intermediate"<<endl;
         cout<<"4 = Hard"<<endl;
+        cout<<"5 = VIEW HIGH-SCORES!"<<endl;
         cout<<"9 = INSTRUCTIONS"<<endl;
         cout<<""<<endl;
         cout<<"Input anything else to quit program."<<endl;
@@ -80,6 +87,9 @@ int main()
             numOf=8;
             score=480;
             break;} 
+            case '5': {void printScore();
+            goto RESTART;
+            break;}
             case '9': {printInstructions(); //calls function to print instrcutions
             goto RESTART; //goes to beginning of menu loop
             break;}
@@ -429,4 +439,34 @@ void saveScore(float score, string name){
     file.open("names.txt", fstream::app);
     file<<name<<" \n";
     file.close(); 
+    
+    return;
+}
+
+void printScore(){
+    string hiScore[ROW][COL];
+    ifstream scores,
+             names;
+    
+    scores.open("scores.txt");
+    names.open("names.txt");
+    
+    for(int i; i<=10; i++)
+    {
+        scores>>hiScore[i][0];
+        names>>hiScore[i][1];
+    }
+    
+    scores.close();
+    names.close();
+   
+    for(int i; i<=10; i++)
+    {
+        cout<<hiScore[i][1]<<"                ";
+        cout<<hiScore[i][0]<<endl;
+    }
+    
+    cout<<"TESTING "<<hiScore[1][1]<<endl;
+    
+    return;
 }
