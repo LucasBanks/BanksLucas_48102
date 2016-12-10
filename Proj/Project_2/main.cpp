@@ -7,16 +7,17 @@
  
 using namespace std;
 
+//Global Constants - Array Size Initialization 
+const int ROW=10,
+          COL=2;
+
 //Function prototypes  
 string setBoard(string user, string&); 
 string checkInput(int, bool&, string&);
 void printInstructions();
 void saveScore(float, string);
 void printScore();
-
-//Global Constants - Array Size Initialization 
-const int ROW=10,
-          COL=2;
+void sortScores(string[][COL], int);
 
 //execution begins here
 int main()
@@ -64,7 +65,7 @@ int main()
         cout<<"5 = VIEW HIGH-SCORES!"<<endl;
         cout<<"9 = INSTRUCTIONS"<<endl;
         cout<<""<<endl;
-        cout<<"Input anything else to quit program."<<endl;
+        cout<<"Input anything else to quit program: ";
         getline(cin,dif);
    
         //Passes in strings of a length relevant to the difficulty selected.
@@ -173,7 +174,7 @@ int main()
                 //Sets win = true so that game loop will break
                 win=true;
                 cout<<"Would you like to play again on a new board? Enter 'y' for yes, ";
-                cout<<"or anything else to quit."<<endl;
+                cout<<"or anything else to quit: ";
                 getline(cin,again); 
             }
             else
@@ -446,6 +447,7 @@ void saveScore(float score, string name){
 void printScore(){
     string hiScore[ROW][COL];
     string cont;
+    int num=0;
     ifstream scores,
              names;
     
@@ -456,18 +458,43 @@ void printScore(){
     {
         scores>>hiScore[i][0];
         names>>hiScore[i][1];
+        
+        if(static_cast<int>(hiScore[i][1][0])<65||static_cast<int>(hiScore[i][1][0])>122)
+        {
+            
+        }
+        else
+        {
+            num++;
+        }
     }
+    
+    sortScores(hiScore, num);
 
     scores.close();
     names.close();
    
-    for(int i=0; i<10; i++)
+    for(int i=0; i<num; i++)
     {
         cout<<hiScore[i][1]<<"                ";
         cout<<hiScore[i][0]<<endl;
     } 
     
-    cout<<"Enter anything to continue: "<<endl;
+    cout<<endl;
+    
+    cout<<"Enter anything to continue: ";
     getline(cin,cont);
+    cout<<endl;
+    cout<<endl;
     return;
+}
+
+void sortScores(string scores[][COL], int num){
+    int highest;
+    
+    for(int i=0; i<10; i++)
+    {
+        
+    }
+    
 }
