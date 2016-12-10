@@ -90,7 +90,7 @@ int main()
             case '5': {printScore();
             goto RESTART;
             break;}
-            case '9': {printInstructions(); //calls function to print instrcutions
+            case '9': {printInstructions(); //calls function to print instructions
             goto RESTART; //goes to beginning of menu loop
             break;}
             default: {
@@ -445,13 +445,14 @@ void saveScore(float score, string name){
 
 void printScore(){
     string hiScore[ROW][COL];
+    string cont;
     ifstream scores,
              names;
     
     scores.open("scores.txt");
     names.open("names.txt");
     
-    for(int i=0; i<=10; i++)
+    for(int i=0; i<10; i++)
     {
         scores>>hiScore[i][0];
         names>>hiScore[i][1];
@@ -460,10 +461,13 @@ void printScore(){
     scores.close();
     names.close();
    
-    for(int i=0; i<=10; i++)
+    for(int i=0; i<10; i++)
     {
         cout<<hiScore[i][1]<<"                ";
         cout<<hiScore[i][0]<<endl;
     } 
+    
+    cout<<"Enter anything to continue: "<<endl;
+    getline(cin,cont);
     return;
 }
