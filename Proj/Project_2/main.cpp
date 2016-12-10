@@ -471,7 +471,7 @@ void printScore(){
     }
     
     sortScores(hiScore, num);
-
+  
     scores.close();
     names.close();
    
@@ -491,23 +491,43 @@ void printScore(){
 }
 
 void sortScores(string scores[][COL], int num){
-    int highest,
-        stToInt;
+    int small,
+        toInt,
+        toInt1,
+        toInt2,
+        iSwap,    
+        iSmall;    
+    ostringstream os,
+                  os1;
     
-    for(int i=0; i<num; i++)
+    
+    for(int i=0; i<num-1; i++)
     {
-        stringstream ss(scores[i][0]);
-        ss>>stToInt;
-        highest=stToInt;
-        int highI=i;
-        
-            for(int x=0; i<num; i++)
+       // stringstream ss(scores[i][0]);
+       // ss>>toInt;
+       // small=toInt;
+        iSmall=i;     
+        for(int x=i+1; x<num; x++)
             {
-                if(stringstream ss(scores[i][0])>highest)
+                stringstream ss(scores[iSmall][0]);
+                ss>>toInt1;
+                stringstream ss1(scores[x][0]);
+                ss1>>toInt2;
+                
+                if(toInt1>toInt2)
                 {
-                    highest=stringstream ss(scores[i][0]);
+                    iSmall=x;
                 }
+                
+                iSwap=toInt1;
+                scores[iSmall][0]=scores[i][0];
+                
+                os<<iSwap;
+                scores[i][0]=os.str();
+                       
             }
     }
+    
+    return;
     
 }
