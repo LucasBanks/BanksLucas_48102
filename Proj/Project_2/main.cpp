@@ -150,11 +150,12 @@ int main()
                 cout<<endl;
                 //Outputs final score
                 cout<<"Your final score is "<<setprecision(4)<<score<<"!"<<endl;
-                cout<<endl;
                 
                 //Prompts user to type in the name that will be associated with 
                 //the score.
+                cout<<"Enter your name, you mastermind: ";
                 getline(cin,name);
+                cout<<endl;
                 
                 //Calls saveScore function to save score.
                 saveScore(score, name);
@@ -422,8 +423,13 @@ void printInstructions(){
 }
 
 void saveScore(float score, string name){
-    fstream file;
-    file.open("scores.txt");
-    file<<score<<endl;
+    ofstream file;
+    
+    file.open("scores.txt", fstream::app);
+    file<<score<<" \n";
+    file.close(); 
+    
+    file.open("names.txt", fstream::app);
+    file<<name<<" \n";
     file.close();    
 }
