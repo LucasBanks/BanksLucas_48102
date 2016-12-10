@@ -4,6 +4,7 @@
 #include <ctime> //enables rand
 #include <iomanip> //enables stream manipulation
 #include <fstream> //enables file io
+#include <sstream> 
  
 using namespace std;
 
@@ -490,11 +491,23 @@ void printScore(){
 }
 
 void sortScores(string scores[][COL], int num){
-    int highest;
+    int highest,
+        stToInt;
     
-    for(int i=0; i<10; i++)
+    for(int i=0; i<num; i++)
     {
+        stringstream ss(scores[i][0]);
+        ss>>stToInt;
+        highest=stToInt;
+        int highI=i;
         
+            for(int x=0; i<num; i++)
+            {
+                if(stringstream ss(scores[i][0])>highest)
+                {
+                    highest=stringstream ss(scores[i][0]);
+                }
+            }
     }
     
 }
