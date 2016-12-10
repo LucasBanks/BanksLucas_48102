@@ -48,8 +48,6 @@ int main()
         //leave
         quit=false;
         
-        
-        
         //Prompts user to select difficulty or leave program.
         cout<<"Welcome to MASTERMIND!"<<endl;
         cout<<"What difficulty do you want to select?"<<endl;
@@ -90,7 +88,8 @@ int main()
                 again="n"; //sets again to n to break out of loop
             }
     }
- 
+        
+    
     do{
         //this if will skip the whole block that checks the user's input for the
         //right letters if user decides to quit. 
@@ -101,7 +100,7 @@ int main()
         {
             break;
         }
-        
+
     //for loop checks each spot to see how it corresponds with the player's
     //guess, and then will assign O or X to a variable that will output
     //during the game so that the player can know how accurate his guess was
@@ -148,6 +147,7 @@ int main()
                 cout<<"|| [OOOO] || ";
                 cout<<"== [OOOO]"<<endl;
                 cout<<endl;
+                             
                 //Outputs final score
                 cout<<"Your final score is "<<setprecision(4)<<score<<"!"<<endl;
                 
@@ -382,17 +382,14 @@ string checkInput(int num, bool &quit, string &spot)
             {   if (guess.find(guess[i], i+1) != string::npos)
                 check=false;
             }
-          
-        
-           
+                    
             //if any erroneous character was found in previous for loop, this while
             //will run giving the player an invalid input message
             if(check==false)
             {
                 cout<<"Invalid input. Please type in four valid letters only. NO REPEATS"<<endl;
             } 
-  
-           
+             
         }while(check==false);  //will loop if the input was invalid  
         return guess; //returns the user's BACKGROUND CHECKED guess
 }
@@ -431,5 +428,5 @@ void saveScore(float score, string name){
     
     file.open("names.txt", fstream::app);
     file<<name<<" \n";
-    file.close();    
+    file.close(); 
 }
