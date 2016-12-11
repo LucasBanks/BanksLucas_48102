@@ -487,19 +487,20 @@ void printScore(float score){
         //Closes files
         scores.close();
         names.close();
+        cout<<"TEST first index AFTER sortScores = "<<hiScore[0][0]<<endl; 
+        cout<<"TEST last index AFTER sortScores = "<<hiScore[9][0]<<endl; 
 
 
-        if(score==0){
+        if(score!=0){
             //Clears files
             ofstream file("names.txt");
-            ofstream file1("scores.txt");  
                      file.close();
+            ofstream file1("scores.txt");  
                      file1.close();
-
                      cout<<endl;
-
-
-
+        }
+        
+        if(score==0){
             //Prints high scores
             for(int i=num-1; i>=0; i--)
             {
@@ -509,6 +510,10 @@ void printScore(float score){
 
             cout<<endl;
         }
+        cout<<endl;
+        cout<<"TEST first index AFTER clear file = "<<hiScore[0][0]<<endl; 
+        cout<<"TEST last index AFTER clear file = "<<hiScore[9][0]<<endl; 
+        
         //Puts new sorted array into file.
         for(int i=num-1; i>=0; i--){
         outfile.open("scores.txt", fstream::app);
@@ -519,6 +524,9 @@ void printScore(float score){
         outfile1<<hiScore[i][1]<<" \n";
         outfile1.close();
         }
+        cout<<endl;
+        cout<<"TEST first index AFTER inputting sorted array in file = "<<hiScore[0][0]<<endl; 
+        cout<<"TEST last index AFTER inputting sorted array in file = "<<hiScore[9][0]<<endl;
 
         cout<<"Enter anything to continue: ";
         getline(cin,cont);
@@ -529,6 +537,8 @@ void printScore(float score){
 }
 
 void sortScores(string scores[][COL], int num){
+    
+    cout<<"TEST WITHIN sortScores: last index = "<<scores[9][0]<<endl;
     
     for(int i=0; i<(num-1); i++)
     {
@@ -548,6 +558,16 @@ void sortScores(string scores[][COL], int num){
             }
         }
     }
+    
+    cout<<"TEST WITHIN sortScores: first index AFTER SWAP = "<<scores[0][0]<<endl;
+    
+    cout<<"TEST PRINT SCORES "<<endl;
+    for(int i=num-1; i>=0; i--)
+            {
+                cout<<setprecision(4)<<atoi(scores[i][0].c_str())<<endl;
+            } 
+
+            cout<<endl;
     
     return;
     
