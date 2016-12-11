@@ -472,7 +472,7 @@ void printScore(float score, string name){
             }
         }
     
-    if(score>atoi(hiScore[9][0].c_str())/**&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58**/)
+    if(score>atoi(hiScore[9][0].c_str())&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58)
     {
         ostringstream ss;
         ss<<score;
@@ -499,8 +499,8 @@ void printScore(float score, string name){
             ofstream file1("scores.txt");  
                      file1.close();
                      cout<<endl;
-                     cout<<"CHECK TO SEE IF FILES WERE CLEARED: ";
-                     getline(cin,cont);
+                     //cout<<"CHECK TO SEE IF FILES WERE CLEARED: ";
+                     //getline(cin,cont);
         }
         
         if(score==0){
