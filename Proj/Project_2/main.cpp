@@ -37,6 +37,7 @@ int main()
            accuraO = (4,""), //where Os and os will be sorted
            accura=(4,""), //Where Os and os will be stored
            dif, //variable where user input to determine difficulty will be stored
+           cont, 
            name; //User will enter their name to save their score.
     bool win, //Keeps game in a loop until character wins.
          quit; //keeps menu in loop until user chooses to quit
@@ -63,8 +64,10 @@ int main()
         cout<<"2 = Easy"<<endl;
         cout<<"3 = Intermediate"<<endl;
         cout<<"4 = Hard"<<endl;
+        cout<<""<<endl;
         cout<<"5 = VIEW HIGH-SCORES!"<<endl;
         cout<<"9 = INSTRUCTIONS"<<endl;
+        cout<<"- = DELETE HIGH-SCORES!"<<endl;
         cout<<""<<endl;
         cout<<"Input anything else to quit program: ";
         getline(cin,dif);
@@ -92,6 +95,18 @@ int main()
             case '5': {printScore();
             goto RESTART;
             break;}
+            case '-': {
+                       ofstream outfile("names.txt");
+                       outfile.close();
+                       
+                       ofstream outfile1("scores.txt");
+                       outfile1.close();
+                       
+                       cout<<"The scoreboard is now CLEARED"<<endl;
+                       cout<<"Enter anything to continue: ";
+                       getline(cin,cont);
+            goto RESTART;           
+            break;}            
             case '9': {printInstructions(); //calls function to print instructions
             goto RESTART; //goes to beginning of menu loop
             break;}
@@ -263,53 +278,39 @@ string setBoard(string user, string &choices){
         {
             case 1: {
                 spot[i]='Q'; //Assigns Q to a spot
-                chkSpot[i]=spot[i]; //Assigns Q to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 1 in repeat variable so it can test for future repeats
             break;
             }
             case 2: {
                 spot[i]='W'; //Assigns W to a spot
-                chkSpot[i]=spot[i]; //Assigns W to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 2 in repeat variable so it can test for future repeats
                 break;
             }
             case 3: {
                 spot[i]='A'; //Assigns A to a spot
-                chkSpot[i]=spot[i]; //Assigns A to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 3 in repeat variable so it can test for future repeats
                 break;
             }
             case 4: {
                 spot[i]='S'; //Assigns S to a spot
-                chkSpot[i]=spot[i]; //Assigns S to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 4 in repeat variable so it can test for future repeats
                 break;
             }
             case 5: {
                 spot[i]='E'; //Assigns E to a spot
-                chkSpot[i]=spot[i]; //Assigns E to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 5 in repeat variable so it can test for future repeats
                 break;
             }
             case 6: {
                 spot[i]='D'; //Assigns D to a spot
-                chkSpot[i]=spot[i]; //Assigns D to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 6 in repeat variable so it can test for future repeats
                 break;
             }
             case 7: {
                 spot[i]='R'; //Assigns R to a spot
-                chkSpot[i]=spot[i]; //Assigns R to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 7 in repeat variable so it can test for future repeats
                 break;
             }
             case 8: {
                 spot[i]='F'; //Assigns F to a spot
-                chkSpot[i]=spot[i]; //Assigns green to check for if the user guessed correctly.
-                repeat[i]=boardSet; //assigns number 8 in repeat variable so it can test for future repeats
                 break;
             }
         }//ends switch
+        chkSpot[i]=spot[i]; //Assigns letter to check for if the user guessed correctly.
+        repeat[i]=boardSet; //assigns number in repeat variable so it can test for future repeats
         }//ends else statement
   
     }//ends for loop
@@ -452,36 +453,56 @@ void printScore(){
     ifstream scores,
              names;
     
+    //Opens files
     scores.open("scores.txt");
     names.open("names.txt");
     
+    //stores values from file into array
     for(int i=0; i<10; i++)
     {
         scores>>hiScore[i][0];
         names>>hiScore[i][1];
         
-        if(static_cast<int>(hiScore[i][1][0])<65||static_cast<int>(hiScore[i][1][0])>122)
+        if(static_cast<int>(hiScore[i][1][0])>65&&static_cast<int>(hiScore[i][1][0])<122)
         {
-            
-        }
-        else
-        {
-            num++;
+           num++; 
         }
     }
     
+    //Calls function to sort scores
     sortScores(hiScore, num);
-  
+    
+    //Closes files
     scores.close();
     names.close();
+    
+    
+    
+    //Clears files
+    ofstream outfile("names.txt");
+    ofstream outfile1("scores.txt");  
+             outfile.close();
+             outfile1.close();
+             
+             cout<<endl;
    
-    for(int i=num; i>=0; i--)
+    //Prints high scores
+    for(int i=num-1; i>=0; i--)
     {
-        cout<<hiScore[i][1]<<"                ";
-        cout<<hiScore[i][0]<<endl;
+        cout<<setw(15)<<hiScore[i][1]<<"                ";
+        cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
     } 
     
     cout<<endl;
+    for(int i=num-1; i>=0; i--){
+    outfile.open("scores.txt", fstream::app);
+    outfile<<hiScore[i][0]<<" \n";
+    outfile.close(); 
+    
+    outfile1.open("names.txt", fstream::app);
+    outfile1<<hiScore[i][1]<<" \n";
+    outfile1.close();
+    }
     
     cout<<"Enter anything to continue: ";
     getline(cin,cont);
