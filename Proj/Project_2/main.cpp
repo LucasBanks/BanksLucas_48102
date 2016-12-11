@@ -503,31 +503,34 @@ void sortScores(string scores[][COL], int num){
     
     for(int i=0; i<num-1; i++)
     {
-       // stringstream ss(scores[i][0]);
-       // ss>>toInt;
-       // small=toInt;
-        iSmall=i;     
+        iSmall=i;
+        small=atoi(scores[i][0].c_str());
         for(int x=i+1; x<num; x++)
-            {
-                stringstream ss(scores[iSmall][0]);
-                ss>>toInt1;
-                stringstream ss1(scores[x][0]);
-                ss1>>toInt2;
-                
-                if(toInt1>toInt2)
+            {         
+                if(atoi(scores[iSmall][0].c_str())<small)
                 {
+                    small=atoi(scores[x][0].c_str());
                     iSmall=x;
                 }
                 
-                iSwap=toInt1;
+                for(int j=0; j<1; j++)
+                {
+                   string temp=scores[iSmall][j];
+                   scores[iSmall][j]=scores[i][j];
+                   scores[i][j]=temp;
+                }
+                
+                /**iSwap=atoi(scores[iSmall][0].c_str());
                 scores[iSmall][0]=scores[i][0];
                 
                 os<<iSwap;
-                scores[i][0]=os.str();
+                scores[i][0]=os.str();**/
                        
             }
     }
-    
+    cout<<scores[0][0]<<endl;
+    cout<<scores[1][0]<<endl;
+    cout<<scores[2][0]<<endl;
     return;
     
 }
