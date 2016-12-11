@@ -17,7 +17,7 @@ string setBoard(string user, string&);
 string checkInput(int, bool&, string&);
 void printInstructions();
 void saveScore(float, string);
-void printScore(float);
+void printScore(float, string);
 void sortScores(string[][COL], int);
 
 //execution begins here
@@ -92,7 +92,7 @@ int main()
             numOf=8;
             score=480;
             break;} 
-            case '5': {printScore(0);
+            case '5': {printScore(0," ");
             goto RESTART;
             break;}
             case '-': {
@@ -186,7 +186,7 @@ int main()
                 
                 //Calls saveScore function to save score.
                 saveScore(score, name);
-                printScore(score);
+                printScore(score, name);
                         
                 //Sets win = true so that game loop will break
                 win=true;
@@ -447,7 +447,7 @@ void saveScore(float score, string name){
     return;
 }
 
-void printScore(float score){
+void printScore(float score, string name){
     string hiScore[ROW][COL];
     string cont;
     int num=0;
@@ -478,6 +478,7 @@ void printScore(float score){
         ss<<score;
         cout<<"TEST lowest = "<<hiScore[9][0]<<endl;
         hiScore[9][0]=ss.str();
+        hiScore[9][1]=name;
         cout<<"TEST lowest AFTER SWAP = "<<hiScore[9][0]<<endl;     
     }
     
@@ -498,6 +499,8 @@ void printScore(float score){
             ofstream file1("scores.txt");  
                      file1.close();
                      cout<<endl;
+                     cout<<"CHECK TO SEE IF FILES WERE CLEARED: ";
+                     getline(cin,cont);
         }
         
         if(score==0){
