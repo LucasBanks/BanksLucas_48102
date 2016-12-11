@@ -475,7 +475,7 @@ void printScore(){
     scores.close();
     names.close();
    
-    for(int i=0; i<num; i++)
+    for(int i=num; i>=0; i--)
     {
         cout<<hiScore[i][1]<<"                ";
         cout<<hiScore[i][0]<<endl;
@@ -491,14 +491,6 @@ void printScore(){
 }
 
 void sortScores(string scores[][COL], int num){
-    int small,
-        toInt,
-        toInt1,
-        toInt2,
-        iSwap,    
-        iSmall;    
-    ostringstream os,
-                  os1;
     
     for(int i=0; i<(num-1); i++)
     {
