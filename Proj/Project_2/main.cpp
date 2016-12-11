@@ -17,7 +17,7 @@ string setBoard(string user, string&);
 string checkInput(int, bool&, string&);
 void printInstructions();
 void saveScore(float, string);
-void printScore();
+void printScore(float);
 void sortScores(string[][COL], int);
 
 //execution begins here
@@ -44,7 +44,7 @@ int main()
     int numOf, //number of valid choices
         oCount=0, //where number of os will be stored        
         oOCount=0; //where number of Os will be stored  
-    float score; //where score will be kept
+    float score=0; //where score will be kept
     ifstream file; //Where high-score data will be read from. 
     
     RESTART: //will take back to beginning of menu loop
@@ -92,7 +92,7 @@ int main()
             numOf=8;
             score=480;
             break;} 
-            case '5': {printScore();
+            case '5': {printScore(0);
             goto RESTART;
             break;}
             case '-': {
@@ -186,6 +186,7 @@ int main()
                 
                 //Calls saveScore function to save score.
                 saveScore(score, name);
+                printScore(score);
                         
                 //Sets win = true so that game loop will break
                 win=true;
@@ -446,68 +447,84 @@ void saveScore(float score, string name){
     return;
 }
 
-void printScore(){
+void printScore(float score){
     string hiScore[ROW][COL];
     string cont;
     int num=0;
     ifstream scores,
              names;
+    ofstream outfile, outfile1;
     
-    //Opens files
-    scores.open("scores.txt");
-    names.open("names.txt");
     
-    //stores values from file into array
-    for(int i=0; i<10; i++)
-    {
-        scores>>hiScore[i][0];
-        names>>hiScore[i][1];
-        
-        if(static_cast<int>(hiScore[i][1][0])>65&&static_cast<int>(hiScore[i][1][0])<122)
+        //Opens files
+        scores.open("scores.txt");
+        names.open("names.txt");
+
+        //stores values from file into array
+        for(int i=0; i<10; i++)
         {
-           num++; 
+            scores>>hiScore[i][0];
+            names>>hiScore[i][1];
+
+            if(static_cast<int>(hiScore[i][1][0])>65&&static_cast<int>(hiScore[i][1][0])<122)
+            {
+               num++; 
+            }
         }
-    }
     
-    //Calls function to sort scores
-    sortScores(hiScore, num);
-    
-    //Closes files
-    scores.close();
-    names.close();
-    
-    
-    
-    //Clears files
-    ofstream outfile("names.txt");
-    ofstream outfile1("scores.txt");  
-             outfile.close();
-             outfile1.close();
-             
-             cout<<endl;
-   
-    //Prints high scores
-    for(int i=num-1; i>=0; i--)
+    if(score>atoi(hiScore[9][0].c_str())/**&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58**/)
     {
-        cout<<setw(15)<<hiScore[i][1]<<"                ";
-        cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
-    } 
-    
-    cout<<endl;
-    for(int i=num-1; i>=0; i--){
-    outfile.open("scores.txt", fstream::app);
-    outfile<<hiScore[i][0]<<" \n";
-    outfile.close(); 
-    
-    outfile1.open("names.txt", fstream::app);
-    outfile1<<hiScore[i][1]<<" \n";
-    outfile1.close();
+        ostringstream ss;
+        ss<<score;
+        cout<<"TEST lowest = "<<hiScore[9][0]<<endl;
+        hiScore[9][0]=ss.str();
+        cout<<"TEST lowest AFTER SWAP = "<<hiScore[9][0]<<endl;     
     }
     
-    cout<<"Enter anything to continue: ";
-    getline(cin,cont);
-    cout<<endl;
-    cout<<endl;
+        //Calls function to sort scores
+        sortScores(hiScore, num);
+
+        //Closes files
+        scores.close();
+        names.close();
+
+
+        if(score==0){
+            //Clears files
+            ofstream file("names.txt");
+            ofstream file1("scores.txt");  
+                     file.close();
+                     file1.close();
+
+                     cout<<endl;
+
+
+
+            //Prints high scores
+            for(int i=num-1; i>=0; i--)
+            {
+                cout<<setw(15)<<hiScore[i][1]<<"                ";
+                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
+            } 
+
+            cout<<endl;
+        }
+        //Puts new sorted array into file.
+        for(int i=num-1; i>=0; i--){
+        outfile.open("scores.txt", fstream::app);
+        outfile<<hiScore[i][0]<<" \n";
+        outfile.close(); 
+
+        outfile1.open("names.txt", fstream::app);
+        outfile1<<hiScore[i][1]<<" \n";
+        outfile1.close();
+        }
+
+        cout<<"Enter anything to continue: ";
+        getline(cin,cont);
+        cout<<endl;
+        cout<<endl;
+    
     return;
 }
 
