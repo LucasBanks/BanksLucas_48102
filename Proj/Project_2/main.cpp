@@ -68,6 +68,7 @@ int main()
         cout<<"5 = VIEW HIGH-SCORES!"<<endl;
         cout<<"9 = INSTRUCTIONS"<<endl;
         cout<<"- = DELETE HIGH-SCORES!"<<endl;
+        cout<<"+ = Cheat! (Only works when you input it during a game)"<<endl;
         cout<<""<<endl;
         cout<<"Input anything else to quit program: ";
         getline(cin,dif);
@@ -492,10 +493,8 @@ void printScore(float score, string name){
     {
         ostringstream ss;
         ss<<score;
-        cout<<"TEST lowest = "<<hiScore[9][0]<<endl;
         hiScore[9][0]=ss.str();
-        hiScore[9][1]=name;
-        cout<<"TEST lowest AFTER SWAP = "<<hiScore[9][0]<<endl;     
+        hiScore[9][1]=name;    
     }
             }
             cout<<"TEST PRINT SCORES after swap"<<endl;
@@ -511,9 +510,7 @@ void printScore(float score, string name){
 
         //Closes files
         scores.close();
-        names.close();
-        cout<<"TEST first index AFTER sortScores = "<<hiScore[0][0]<<endl; 
-        cout<<"TEST last index AFTER sortScores = "<<hiScore[9][0]<<endl; 
+        names.close(); 
 
 
         if(score!=0){
@@ -528,7 +525,8 @@ void printScore(float score, string name){
         }
         
         if(score==0){
-            //Prints high scores
+            //Prints scoreboard
+            cout<<"                  SCOREBOARD"<<endl;
             for(int i=num-1; i>=0; i--)
             {
                 cout<<setw(15)<<hiScore[i][1]<<"                ";
@@ -538,8 +536,6 @@ void printScore(float score, string name){
             cout<<endl;
         }
         cout<<endl;
-        cout<<"TEST first index AFTER clear file = "<<hiScore[0][0]<<endl; 
-        cout<<"TEST last index AFTER clear file = "<<hiScore[9][0]<<endl; 
         
         //Puts new sorted array into file.
         for(int i=num-1; i>=0; i--){
@@ -552,8 +548,6 @@ void printScore(float score, string name){
         outfile1.close();
         }
         cout<<endl;
-        cout<<"TEST first index AFTER inputting sorted array in file = "<<hiScore[0][0]<<endl; 
-        cout<<"TEST last index AFTER inputting sorted array in file = "<<hiScore[9][0]<<endl;
 
         cout<<"Enter anything to continue: ";
         getline(cin,cont);
@@ -565,7 +559,6 @@ void printScore(float score, string name){
 
 void sortScores(string scores[][COL], int num){
     
-    cout<<"TEST WITHIN sortScores: last index = "<<scores[9][0]<<endl;
     
     for(int i=0; i<(num-1); i++)
     {
@@ -585,8 +578,6 @@ void sortScores(string scores[][COL], int num){
             }
         }
     }
-    
-    cout<<"TEST WITHIN sortScores: first index AFTER SWAP = "<<scores[0][0]<<endl;
     
     cout<<"TEST PRINT SCORES after sort (within function)"<<endl;
     for(int i=num-1; i>=0; i--)
