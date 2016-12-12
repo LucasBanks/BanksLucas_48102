@@ -116,8 +116,7 @@ int main()
                 win=true; //sets win to true to break out of loop
                 again="n"; //sets again to n to break out of loop
             }
-    }
-        
+    }     
     
     do{
         //this if will skip the whole block that checks the user's input for the
@@ -423,7 +422,7 @@ string checkInput(int num, bool &quit, string &spot)
 void printInstructions(){
     string cont,    //pauses after instructions print until user inputs anything
            contents; //where file data will be stored
-    ifstream textFile;
+    ifstream textFile; //opens instructions.txt
    
     //opens file
     textFile.open("instructions.txt");
@@ -460,12 +459,11 @@ void saveScore(float score, string name){
 }
 
 void printScore(float score, string name){
-    string hiScore[ROW][COL];
-    string cont;
-    ifstream scores,
-             names;
-    ofstream outfile, outfile1;
-    
+    string hiScore[ROW][COL];//2D array where scores and names will be held
+    string cont;//variable to wait for user input to continue
+    ifstream scores,//read into scores file
+             names;//read into names file
+    ofstream outfile, outfile1;//opens scores & names file
     
         //Opens files
         scores.open("scores.txt");
@@ -477,7 +475,10 @@ void printScore(float score, string name){
             scores>>hiScore[i][0];
             names>>hiScore[i][1];
         }
-            
+    
+    //tests player's score w/ value in the 10th index of the first dimension
+    //of the array. That number will always be the lowest value in the array.
+    //if the score is bigger, it will replace that element.
     if(score>atoi(hiScore[9][0].c_str())&&score!=0)
     {
         ostringstream ss;
@@ -494,7 +495,11 @@ void printScore(float score, string name){
         scores.close();
         names.close(); 
 
-
+        //If score doesn't == 0, that means the function was called from 
+        //a user winning the game. So this is here to clear the file so that 
+        //it can be replaced with contents from the array with sorted score data.
+        //It wont run if the function was called for the purpose of printing the
+        //score. (In that case, score WOULD = 0, and this wouldn't run)
         if(score!=0){
             //Clears files
             ofstream file("names.txt")  ;
@@ -506,7 +511,10 @@ void printScore(float score, string name){
                      //getline(cin,cont);
         }
         
-        if(score==0){
+        //If score == 0, the function was called from a user selecting the menu 
+        //option to print the score. When that happens, the function passes in 0
+        //to score. So this WONT print the scoreboard if function was called from
+        //the user winning the game.
             //Prints scoreboard
             cout<<"                  SCOREBOARD"<<endl;
             for(int i=10; i>=1; i--)
@@ -532,13 +540,15 @@ void printScore(float score, string name){
         getline(cin,cont);
         cout<<endl;
         cout<<endl;
+        
+        return;
         }
-    return;
-}
+    
+
 
 void sortScores(string scores[][COL]){
     
-    
+   //Modified selection sort. 
     for(int i=0; i<(10); i++)
     {
         for(int j=i+1; j<11; j++)
