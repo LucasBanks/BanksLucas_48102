@@ -92,7 +92,7 @@ int main()
             numOf=8;
             score=480;
             break;} 
-            case '5': {printScore(0," ");
+            case '5': {printScore(0,"\0");
             goto RESTART;
             break;}
             case '-': {
@@ -460,13 +460,14 @@ void printScore(float score, string name){
         scores.open("scores.txt");
         names.open("names.txt");
         
-         cout<<"TEST PRINT SCORES after before storing file values into array"<<endl;
+         cout<<"TEST PRINT SCORES before storing file values into array"<<endl;
     for(int i=num-1; i>=0; i--)
             {
                 cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
             } 
 
             cout<<endl;
+            
 
         //stores values from file into array
         for(int i=0; i<10; i++)
@@ -479,7 +480,14 @@ void printScore(float score, string name){
                num++;
             }
         }
-    
+            cout<<"TEST PRINT SCORES after storing file values into array"<<endl;
+    for(int i=num-1; i>=0; i--)
+            {
+                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
+            } 
+
+            cout<<endl;
+            if(score!=0){
     if(score>atoi(hiScore[9][0].c_str())/**&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58**/)
     {
         ostringstream ss;
@@ -489,6 +497,14 @@ void printScore(float score, string name){
         hiScore[9][1]=name;
         cout<<"TEST lowest AFTER SWAP = "<<hiScore[9][0]<<endl;     
     }
+            }
+            cout<<"TEST PRINT SCORES after swap"<<endl;
+    for(int i=num-1; i>=0; i--)
+            {
+                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
+            } 
+
+            cout<<endl;
     
         //Calls function to sort scores
         sortScores(hiScore, num);
