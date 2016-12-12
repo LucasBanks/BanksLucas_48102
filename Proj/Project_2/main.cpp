@@ -538,7 +538,7 @@ void printScore(float score, string name){
         if(score==0){
             //Prints scoreboard
             cout<<"                  SCOREBOARD"<<endl;
-            for(int i=10; i>=0; i--)
+            for(int i=10; i>=1; i--)
             {
                 cout<<setw(15)<<hiScore[i][1]<<"                ";
                 cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
@@ -618,5 +618,3 @@ void sortScores(string scores[][COL], int num){
     
     return;    
 }
-
-
