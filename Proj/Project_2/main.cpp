@@ -537,16 +537,19 @@ void printScore(float score, string name){
         }
         cout<<endl;
         
+        outfile.open("scores.txt");
+        outfile1.open("names.txt");
+        
         //Puts new sorted array into file.
         for(int i=num-1; i>=0; i--){
-        outfile.open("scores.txt", fstream::app);
-        outfile<<hiScore[i][0]<<" \n";
-        outfile.close(); 
-
-        outfile1.open("names.txt", fstream::app);
+        
+        outfile<<hiScore[i][0]<<" \n";      
         outfile1<<hiScore[i][1]<<" \n";
-        outfile1.close();
         }
+        
+        outfile1.close();
+        outfile.close(); 
+        
         cout<<endl;
 
         cout<<"Enter anything to continue: ";
@@ -590,3 +593,7 @@ void sortScores(string scores[][COL], int num){
     return;
     
 }
+
+
+
+
