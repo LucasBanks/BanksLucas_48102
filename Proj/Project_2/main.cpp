@@ -19,7 +19,7 @@ string checkInput(int, bool&, string&);
 void printInstructions();
 void saveScore(float, string);
 void printScore(float, string);
-void sortScores(string[][COL], int);
+void sortScores(string[][COL]);
 
 //execution begins here
 int main()
@@ -462,7 +462,6 @@ void saveScore(float score, string name){
 void printScore(float score, string name){
     string hiScore[ROW][COL];
     string cont;
-    int num=0;
     ifstream scores,
              names;
     ofstream outfile, outfile1;
@@ -477,11 +476,6 @@ void printScore(float score, string name){
         {
             scores>>hiScore[i][0];
             names>>hiScore[i][1];
-               
-            if(static_cast<int>(hiScore[i][1][0])>65&&static_cast<int>(hiScore[i][1][0])<122)
-            {
-               num++;
-            }
         }
             
     if(score>atoi(hiScore[9][0].c_str())&&score!=0)
@@ -494,7 +488,7 @@ void printScore(float score, string name){
             
     
         //Calls function to sort scores
-        sortScores(hiScore, num);
+        sortScores(hiScore);
 
         //Closes files
         scores.close();
@@ -542,7 +536,7 @@ void printScore(float score, string name){
     return;
 }
 
-void sortScores(string scores[][COL], int num){
+void sortScores(string scores[][COL]){
     
     
     for(int i=0; i<(10); i++)
