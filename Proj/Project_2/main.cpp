@@ -459,20 +459,28 @@ void printScore(float score, string name){
         //Opens files
         scores.open("scores.txt");
         names.open("names.txt");
+        
+         cout<<"TEST PRINT SCORES after before storing file values into array"<<endl;
+    for(int i=num-1; i>=0; i--)
+            {
+                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
+            } 
+
+            cout<<endl;
 
         //stores values from file into array
         for(int i=0; i<10; i++)
         {
             scores>>hiScore[i][0];
             names>>hiScore[i][1];
-
+               
             if(static_cast<int>(hiScore[i][1][0])>65&&static_cast<int>(hiScore[i][1][0])<122)
             {
-               num++; 
+               num++;
             }
         }
     
-    if(score>atoi(hiScore[9][0].c_str())&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58)
+    if(score>atoi(hiScore[9][0].c_str())/**&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58**/)
     {
         ostringstream ss;
         ss<<score;
@@ -564,7 +572,7 @@ void sortScores(string scores[][COL], int num){
     
     cout<<"TEST WITHIN sortScores: first index AFTER SWAP = "<<scores[0][0]<<endl;
     
-    cout<<"TEST PRINT SCORES "<<endl;
+    cout<<"TEST PRINT SCORES after sort (within function)"<<endl;
     for(int i=num-1; i>=0; i--)
             {
                 cout<<setprecision(4)<<atoi(scores[i][0].c_str())<<endl;
