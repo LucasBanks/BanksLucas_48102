@@ -9,12 +9,13 @@
 using namespace std;
 
 //Global Constants - Array Size Initialization 
-const int ROW=10,
+const int ROW=11,
           COL=2;
 
 //Function prototypes  
 string setBoard(string user, string&); 
 string checkInput(int, bool&, string&);
+
 void printInstructions();
 void saveScore(float, string);
 void printScore(float, string);
@@ -182,18 +183,28 @@ int main()
                 //Prompts user to type in the name that will be associated with 
                 //the score.
                 cout<<"Enter your name, you mastermind: ";
+                
                 getline(cin,name);
+                while(name.size()>14)
+                {
+                    cout<<"Input up to 14 LETTERS only"<<endl;
+                    cout<<"Enter your name: ";
+                    getline(cin,name);
+                            
+                }
                 cout<<endl;
                 
                 //Calls saveScore function to save score.
                 saveScore(score, name);
-                printScore(score, name);
+                
                         
                 //Sets win = true so that game loop will break
                 win=true;
                 cout<<"Would you like to play again on a new board? Enter 'y' for yes, ";
                 cout<<"or anything else to quit: ";
-                getline(cin,again); 
+                
+                getline(cin,again);
+                
             }
             else
             {
@@ -471,7 +482,7 @@ void printScore(float score, string name){
             
 
         //stores values from file into array
-        for(int i=0; i<10; i++)
+        for(int i=0; i<ROW; i++)
         {
             scores>>hiScore[i][0];
             names>>hiScore[i][1];
@@ -515,7 +526,7 @@ void printScore(float score, string name){
 
         if(score!=0){
             //Clears files
-            ofstream file("names.txt");
+            ofstream file("names.txt")  ;
                      file.close();
             ofstream file1("scores.txt");  
                      file1.close();
@@ -527,30 +538,40 @@ void printScore(float score, string name){
         if(score==0){
             //Prints scoreboard
             cout<<"                  SCOREBOARD"<<endl;
-            for(int i=num-1; i>=0; i--)
+            for(int i=10; i>=0; i--)
             {
                 cout<<setw(15)<<hiScore[i][1]<<"                ";
                 cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
             } 
 
+                cout<<endl;
+
+            cout<<endl;
+
+            outfile.open("scores.txt");
+            outfile1.open("names.txt");
+
+            //Puts new sorted array into file.
+            for(int i=ROW-1; i>0; i--){
+
+            outfile<<hiScore[i][0]<<" \n";      
+            outfile1<<hiScore[i][1]<<" \n";
+                }
+
+            outfile1.close();
+            outfile.close(); 
+            
+             cout<<"TEST PRINT SCORES after putting sorted array into files"<<endl;
+    for(int i=num-1; i>=0; i--)
+            {
+                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
+            } 
+
             cout<<endl;
         }
-        cout<<endl;
-        
-        outfile.open("scores.txt");
-        outfile1.open("names.txt");
-        
-        //Puts new sorted array into file.
-        for(int i=num-1; i>=0; i--){
-        
-        outfile<<hiScore[i][0]<<" \n";      
-        outfile1<<hiScore[i][1]<<" \n";
-        }
-        
-        outfile1.close();
-        outfile.close(); 
         
         cout<<endl;
+        cout<<"num = "<<num<<endl;
 
         cout<<"Enter anything to continue: ";
         getline(cin,cont);
@@ -563,9 +584,9 @@ void printScore(float score, string name){
 void sortScores(string scores[][COL], int num){
     
     
-    for(int i=0; i<(num-1); i++)
+    for(int i=0; i<(10); i++)
     {
-        for(int j=i+1; j<num; j++)
+        for(int j=i+1; j<11; j++)
         {
             string temp, temp1;
             
@@ -589,11 +610,13 @@ void sortScores(string scores[][COL], int num){
             } 
 
             cout<<endl;
+            cout<<"Check files before continuing ";
+            string cont;
+        getline(cin,cont);
+        cout<<endl;
+        cout<<endl;
     
-    return;
-    
+    return;    
 }
-
-
 
 
