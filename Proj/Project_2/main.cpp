@@ -471,16 +471,7 @@ void printScore(float score, string name){
         //Opens files
         scores.open("scores.txt");
         names.open("names.txt");
-        
-         cout<<"TEST PRINT SCORES before storing file values into array"<<endl;
-    for(int i=num-1; i>=0; i--)
-            {
-                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
-            } 
-
-            cout<<endl;
             
-
         //stores values from file into array
         for(int i=0; i<ROW; i++)
         {
@@ -492,29 +483,15 @@ void printScore(float score, string name){
                num++;
             }
         }
-            cout<<"TEST PRINT SCORES after storing file values into array"<<endl;
-    for(int i=num-1; i>=0; i--)
-            {
-                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
-            } 
-
-            cout<<endl;
-            if(score!=0){
-    if(score>atoi(hiScore[9][0].c_str())/**&&static_cast<int>(hiScore[9][0][0])>48&&static_cast<int>(hiScore[9][0][0])<58**/)
+            
+    if(score>atoi(hiScore[9][0].c_str())&&score!=0)
     {
         ostringstream ss;
         ss<<score;
         hiScore[9][0]=ss.str();
         hiScore[9][1]=name;    
     }
-            }
-            cout<<"TEST PRINT SCORES after swap"<<endl;
-    for(int i=num-1; i>=0; i--)
-            {
-                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
-            } 
-
-            cout<<endl;
+            
     
         //Calls function to sort scores
         sortScores(hiScore, num);
@@ -544,10 +521,6 @@ void printScore(float score, string name){
                 cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
             } 
 
-                cout<<endl;
-
-            cout<<endl;
-
             outfile.open("scores.txt");
             outfile1.open("names.txt");
 
@@ -560,24 +533,12 @@ void printScore(float score, string name){
 
             outfile1.close();
             outfile.close(); 
-            
-             cout<<"TEST PRINT SCORES after putting sorted array into files"<<endl;
-    for(int i=num-1; i>=0; i--)
-            {
-                cout<<setprecision(4)<<atoi(hiScore[i][0].c_str())<<endl;
-            } 
-
-            cout<<endl;
-        }
-        
-        cout<<endl;
-        cout<<"num = "<<num<<endl;
 
         cout<<"Enter anything to continue: ";
         getline(cin,cont);
         cout<<endl;
         cout<<endl;
-    
+        }
     return;
 }
 
@@ -602,19 +563,6 @@ void sortScores(string scores[][COL], int num){
             }
         }
     }
-    
-    cout<<"TEST PRINT SCORES after sort (within function)"<<endl;
-    for(int i=num-1; i>=0; i--)
-            {
-                cout<<setprecision(4)<<atoi(scores[i][0].c_str())<<endl;
-            } 
-
-            cout<<endl;
-            cout<<"Check files before continuing ";
-            string cont;
-        getline(cin,cont);
-        cout<<endl;
-        cout<<endl;
     
     return;    
 }
