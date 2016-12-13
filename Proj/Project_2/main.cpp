@@ -14,7 +14,7 @@ const int ROW=11,
 
 //Function prototypes  
 string setBoard(string user, string&); 
-string checkInput(int, bool&, string&);
+string checkInput(unsigned short, bool&, string&);
 
 void printInstructions();
 void saveScore(float, string);
@@ -42,9 +42,9 @@ int main()
            name; //User will enter their name to save their score.
     bool win, //Keeps game in a loop until character wins.
          quit; //keeps menu in loop until user chooses to quit
-    int numOf, //number of valid choices
-        oCount=0, //where number of os will be stored        
-        oOCount=0; //where number of Os will be stored  
+    unsigned short numOf, //number of valid choices
+                   oCount=0, //where number of os will be stored        
+                   oOCount=0; //where number of Os will be stored  
     float score=0; //where score will be kept
     ifstream file; //Where high-score data will be read from. 
     
@@ -354,7 +354,7 @@ string setBoard(string user, string &choices){
 //Output:   Outputs to the function here -> Description, Range, Units
 //******************************************************************************
  
-string checkInput(int num, bool &quit, string &spot)
+string checkInput(unsigned short num, bool &quit, string &spot)
 {
     bool check; //variable to check if input is valid
     string guess, //user's guess
