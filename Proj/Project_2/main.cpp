@@ -499,6 +499,16 @@ void saveScore(float score, string name){
     return;
 }
 
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//*************************   printScore ****************************************
+//Purpose:  Prints the scoreboard if user chooses to do so. Function is also called
+//          whenever the user wins to save his score/name and sort the high scores.
+
+//Inputs:   float score -> where the score will be passed in. 1.2E-38 to 3.4E+38
+//          string name -> where the name will be passed in
+//Output:   Nothing is returned.
+//******************************************************************************
 void printScore(float score, string name){
     string hiScore[ROW][COL];//2D array where scores and names will be held
     string cont;//variable to wait for user input to continue
@@ -586,7 +596,14 @@ void printScore(float score, string name){
         }
     
 
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//*************************   sortScores ****************************************
+//Purpose:  Where scores will be sorted.
 
+//Inputs:   string scores[][] -> 2D array where scores & names will be kept.
+//Output:   Nothing is returned. 
+//******************************************************************************
 void sortScores(string scores[][COL]){
     
    //Modified selection sort. 
