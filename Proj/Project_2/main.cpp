@@ -612,7 +612,7 @@ void sortScores(string scores[][COL]){
     {
         for(int j=i+1; j<11; j++)
         {
-            string temp, temp1;
+           static string temp, temp1;
             
             if(atoi(scores[i][0].c_str())>atoi(scores[j][0].c_str()))
             {
