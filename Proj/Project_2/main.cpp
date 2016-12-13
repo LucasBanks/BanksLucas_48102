@@ -235,7 +235,7 @@ int main()
 
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-//*************************   Problem 1 ****************************************
+//*************************   setBoard  ****************************************
 //Purpose:  Sets the board appropriate to the difficulty selected by the user.
 //  
 //Inputs:   string user -> The difficulty that the user selects. 
@@ -347,7 +347,7 @@ string setBoard(string user, string &choices){
 
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
-//*************************   Problem 1 ****************************************
+//*************************   checkInput ****************************************
 //Purpose:  Checks to see if player input was valid.
 
 //Inputs:   unsigned short num -> where num of possible board space choices are passed in
@@ -443,6 +443,14 @@ string checkInput(unsigned short num, bool &quit, string &spot)
         return guess; //returns the user's BACKGROUND CHECKED guess
 }
 
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//*************************   printInstructions ****************************************
+//Purpose:  Opens instructions file and prints the contents of it.
+
+//Inputs:   Nothing is sent in.
+//Output:   Nothing is returned out.
+//******************************************************************************
 void printInstructions(){
     string cont,    //pauses after instructions print until user inputs anything
            contents; //where file data will be stored
@@ -468,6 +476,15 @@ void printInstructions(){
     return;   
 }
 
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//*************************   saveScore ****************************************
+//Purpose:  Saves the score the player got (and his name) into files.
+
+//Inputs:   float score -> The score that the player earned. 1.2E-38 to 3.4E+38
+//          string name -> The name that the player inputs.
+//Output:   Nothing is returned.
+//******************************************************************************
 void saveScore(float score, string name){
     ofstream file;
     
