@@ -232,7 +232,17 @@ int main()
                                 //decide to quit
     return 0;                   
 }//end of main
- 
+
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//*************************   Problem 1 ****************************************
+//Purpose:  Sets the board appropriate to the difficulty selected by the user.
+//  
+//Inputs:   string user -> The difficulty that the user selects. 
+//          string &choices -> Where list of valid choices will be stored.
+//Output:   string spot -> Where the letters will be randomly assigned.
+//******************************************************************************
+
 string setBoard(string user, string &choices){
     string spot(user.size(),'.'), //where letters will be randomly assigned
            chkSpot; //checks how accurate the player's guess is
@@ -334,6 +344,15 @@ string setBoard(string user, string &choices){
     return spot; //returns the string which holds the positions of the letters
                  //on the board.
 }
+
+//000000011111111112222222222333333333344444444445555555555666666666677777777778
+//345678901234567890123456789012345678901234567890123456789012345678901234567890
+//*************************   Problem 1 ****************************************
+//Purpose:  Checks to see if player input was valid
+
+//Inputs:   Inputs to the function here  -> Description, Range, Units
+//Output:   Outputs to the function here -> Description, Range, Units
+//******************************************************************************
  
 string checkInput(int num, bool &quit, string &spot)
 {
