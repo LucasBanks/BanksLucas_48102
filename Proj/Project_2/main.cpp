@@ -4,7 +4,7 @@
 #include <ctime> //enables rand
 #include <iomanip> //enables stream manipulation
 #include <fstream> //enables file io
-#include <sstream> 
+#include <sstream> //to convert ints to string
  
 using namespace std;
 
@@ -532,6 +532,7 @@ void printScore(float score, string name){
     //if the score is bigger, it will replace that element.
     if(score>atoi(hiScore[9][0].c_str())&&score!=0)
     {
+        //converts score value to a string so it can be stored in string array
         ostringstream ss;
         ss<<score;
         hiScore[9][0]=ss.str();
