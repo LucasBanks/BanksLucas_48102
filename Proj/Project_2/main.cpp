@@ -348,10 +348,15 @@ string setBoard(string user, string &choices){
 //000000011111111112222222222333333333344444444445555555555666666666677777777778
 //345678901234567890123456789012345678901234567890123456789012345678901234567890
 //*************************   Problem 1 ****************************************
-//Purpose:  Checks to see if player input was valid
+//Purpose:  Checks to see if player input was valid.
 
-//Inputs:   Inputs to the function here  -> Description, Range, Units
-//Output:   Outputs to the function here -> Description, Range, Units
+//Inputs:   unsigned short num -> where num of possible board space choices are passed in
+//          0 to 65,535
+//          bool &quit -> bool allowing you to quit out of the game.
+//          0 or 1
+//          string &spot -> where the board is stored.
+
+//Output:   string guess ->  where user's guess is stored
 //******************************************************************************
  
 string checkInput(unsigned short num, bool &quit, string &spot)
